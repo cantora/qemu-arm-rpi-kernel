@@ -20,3 +20,14 @@ qemu-system-arm -cpu arm1176 -m 256 -M versatilepb \
 	-hda archlinux-hf-2013-06-06.img
 ~~~
 
+
+resizing raw disk image partition/filesystem:
+`fdisk <disk.img>`
+delete partition and create new partition of the same type and starting at the same block.
+~~~
+sudo losetup -o $((<block start> * <block size>)) -f <disk.img>
+sudo file -s /dev/loop0
+sudo resize2fs /dev/loop0
+~~~
+
+
