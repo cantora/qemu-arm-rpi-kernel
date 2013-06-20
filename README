@@ -17,17 +17,24 @@ boot command line for arch linux:
 qemu-system-arm -cpu arm1176 -m 256 -M versatilepb \
 	-no-reboot -display none -serial stdio \
 	-kernel kernel-qemu-arm.gz -append "root=/dev/sda2 panic=0 console=ttyAMA0 rw" \
-	-hda archlinux-hf-2013-06-06.img
+	-hda <disk image>
 ~~~
 
 
 resizing raw disk image partition/filesystem:
-`fdisk <disk.img>`
+~~~
+qemu-img resize <disk.img> <N>G
+fdisk <disk.img>
+~~~
 delete partition and create new partition of the same type and starting at the same block.
 ~~~
 sudo losetup -o $((<block start> * <block size>)) -f <disk.img>
 sudo file -s /dev/loop0
 sudo resize2fs /dev/loop0
+sudo losetup -d /dev/loop0
 ~~~
+
+converting raw disk image to qcow2 format:
+`qemu-img convert -p -f raw -O qcow2 <disk.img> <disk.qcow2>`
 
 
