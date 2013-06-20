@@ -1,0 +1,5 @@
+makefile and resources for building the raspberry pi fork of the linux kernel 
+for use with qemu and the arch linux raspberry pi image.
+
+this was all derived from the tutorial at http://xecdesign.com/compiling-a-kernel/.
+
