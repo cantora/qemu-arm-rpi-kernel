@@ -2,7 +2,7 @@
 KDIR	= linux
 KFLAGS	= ARCH=arm
 
-kernel-qemu-arm.gz: kernel-config
+kernel-qemu-arm.gz: kernel-config $(KDIR)/Makefile
 	cp kernel-config $(KDIR)/.config
 	$(MAKE) $(MFLAGS) -C $(KDIR) $(KFLAGS)
 #	$(MAKE) $(MFLAGS) -C $(KDIR) $(KFLAGS) INSTALL_MOD_PATH=../modules modules_install
