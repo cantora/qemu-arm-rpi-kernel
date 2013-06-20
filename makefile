@@ -2,15 +2,14 @@
 KDIR	= linux
 KFLAGS	= ARCH=arm
 
-kernel-qemu-arm.gz: kernel-config $(KDIR)/Makefile
+kernel-qemu-arm.gz: kernel-config $(KDIR)/.patch1
 	cp kernel-config $(KDIR)/.config
 	$(MAKE) $(MFLAGS) -C $(KDIR) $(KFLAGS)
 #	$(MAKE) $(MFLAGS) -C $(KDIR) $(KFLAGS) INSTALL_MOD_PATH=../modules modules_install
 	cp linux/arch/arm/boot/zImage $@
 
-kernel-config: $(KDIR)/.versatile_defconfig
+new-kernel-config: $(KDIR)/.versatile_defconfig
 	$(MAKE) $(MFLAGS) -C $(KDIR) $(KFLAGS) menuconfig
-	mv $(KDIR)/.config $@
 
 $(KDIR)/.versatile_defconfig: $(KDIR)/.patch1
 	$(MAKE) $(MFLAGS) -C $(KDIR) $(KFLAGS) versatile_defconfig
@@ -22,3 +21,8 @@ $(KDIR)/.patch1: $(KDIR)/Makefile
 
 $(KDIR)/Makefile:
 	git clone https://github.com/raspberrypi/linux.git
+
+clean:
+	rm -f kernel-qemu-arm.gz
+	rm -rf ./modules/lib
+	rm -rf ./linux
