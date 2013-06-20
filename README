@@ -9,7 +9,14 @@ arch linux notes:
   * config: CONFIG_NLS_CODEPAGE_437=y
   * config: CONFIG_NLS_ISO8859_1=y
   * reference: github.com/johnlane/rpi-utils
+  * disk image: fstab must be changed; s/\/dev\/mmcblk0p1/\/dev\/sda1/
+  * note: systemd fails to start kernel modules target; im not sure if this is a problem.
 
-
-
+boot command line for arch linux:
+~~~
+qemu-system-arm -cpu arm1176 -m 256 -M versatilepb \
+	-no-reboot -display none -serial stdio \
+	-kernel kernel-qemu-arm.gz -append "root=/dev/sda2 panic=0 console=ttyAMA0 rw" \
+	-hda archlinux-hf-2013-06-06.img
+~~~
 
