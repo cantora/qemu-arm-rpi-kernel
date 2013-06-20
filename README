@@ -3,3 +3,13 @@ for use with qemu and the arch linux raspberry pi image.
 
 this was all derived from the tutorial at http://xecdesign.com/compiling-a-kernel/.
 
+arch linux notes:
+  * config: CONFIG_CGROUPS=y
+  * config: CONFIG_VFAT_FS=y
+  * config: CONFIG_NLS_CODEPAGE_437=y
+  * config: CONFIG_NLS_ISO8859_1=y
+  * reference: github.com/johnlane/rpi-utils
+
+
+
+
