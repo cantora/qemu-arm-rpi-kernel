@@ -22,7 +22,12 @@ $(KDIR)/.patch1: $(KDIR)/Makefile
 $(KDIR)/Makefile:
 	git clone https://github.com/raspberrypi/linux.git
 
+.PHONY: install
+install: kernel-qemu-arm.gz
+	cp -fsv $(CURDIR)/$< $(HOME)/qemu/kernels/qemu-rpi.gz
+
 clean:
 	rm -f kernel-qemu-arm.gz
 	rm -rf ./modules/lib
 	rm -rf ./linux
+
