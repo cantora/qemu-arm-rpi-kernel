@@ -8,6 +8,7 @@ kernel-qemu-arm.gz: kernel-config $(KDIR)/.patch1
 #	$(MAKE) $(MFLAGS) -C $(KDIR) $(KFLAGS) INSTALL_MOD_PATH=../modules modules_install
 	cp linux/arch/arm/boot/zImage $@
 
+.PHONY: new-kernel-config
 new-kernel-config: $(KDIR)/.versatile_defconfig
 	$(MAKE) $(MFLAGS) -C $(KDIR) $(KFLAGS) menuconfig
 
