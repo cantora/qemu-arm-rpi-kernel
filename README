@@ -15,9 +15,10 @@ arch linux notes:
 boot command line for arch linux:
 ~~~
 qemu-system-arm -cpu arm1176 -m 256 -M versatilepb \
-	-no-reboot -display none -serial stdio \
-	-kernel kernel-qemu-arm.gz -append "root=/dev/sda2 panic=0 console=ttyAMA0 rw" \
-	-hda <disk image>
+	-no-reboot -nographic \
+	-kernel kernel-qemu-arm.gz -append "root=/dev/sda2 panic=2 console=ttyAMA0 rw" \
+	-hda <disk image> \
+	-net nic -net user,hostfwd=tcp::9999-:22
 ~~~
 
 
